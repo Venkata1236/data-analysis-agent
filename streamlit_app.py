@@ -71,8 +71,11 @@ with col1:
 
 if use_sample:
     try:
-        with open("sample_data/sales_data.csv", "rb") as f:
+        import os
+        sample_path = os.path.join(os.path.dirname(__file__), "sample_data", "sales_data.csv")
+        with open(sample_path, "rb") as f:
             file_bytes = f.read()
+
         load_csv_from_bytes(file_bytes, "sales_data.csv")
         st.session_state.df_loaded = True
         st.session_state.agent = None
