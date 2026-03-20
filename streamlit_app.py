@@ -8,8 +8,10 @@ from core.data_loader import load_csv_from_bytes, get_dataframe_info, get_filena
 from core.agent import create_agent, run_analysis
 
 # ── Load API key ──────────────────────────────────────────────
-load_dotenv()
-api_key = os.getenv("OPENAI_API_KEY") or st.secrets.get("OPENAI_API_KEY", "")
+try:
+    api_key = st.secrets.get("OPENAI_API_KEY", "")
+except:
+    api_key = os.environ.get("OPENAI_API_KEY", "")
 
 # ── Page Config ───────────────────────────────────────────────
 st.set_page_config(
